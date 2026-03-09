@@ -3,36 +3,62 @@ package campusquickserve_ice;
 import javax.swing.JOptionPane;
 
 public class Order {
-    String customerName, itemOrdered, StudentNumberInput, quantityInput, PriceInput;
-    int studentNum, Quantity;
-    double pricePerItem; 
+   private String customerName, itemOrdered, studentNum, quantityInput, PriceInput;
+   private int quantity;
+   private double pricePerItem;
+     
+    
+   //Constructor
+    public Order(){      
+    customerName = JOptionPane.showInputDialog(null, "Enter your full name:");
+    
+    studentNum = JOptionPane.showInputDialog(null, "Enter your student number:");
+    
+    itemOrdered = JOptionPane.showInputDialog(null, "Enter your order:");
+    
+    quantityInput = JOptionPane.showInputDialog(null, "Enter the number of items ordered:");
+    quantity = Integer.parseInt(quantityInput);
+    
+    PriceInput = JOptionPane.showInputDialog(null, "Enter the price per item:");
+    pricePerItem = Double.parseDouble(PriceInput);
+  
+    }
+    
+    //Getters
+    public String getCustomerName(){
+     return customerName; 
+    }
+    
+    public String getStudentNum(){
+     return studentNum; 
+    }
+    
+    public String getItemOrdered(){ 
+     return itemOrdered; 
+    }
+    
+    public int getQuantity(){
+     return quantity; 
+    }
+    
+    public double getPricePerItem(){
+     return pricePerItem; 
+    }
     
     //Subtotal Calculation method that multiplies quantity with price per item
     public static double subtotalCalc(int quant, double priceItem){
     return quant * priceItem;
     }
     
-    public static double vatAddedCalc(double subtotal){
+    //VAT calculation method determining how much VAT must be added
+    public static double vatCalc(double subtot){
     final double VAT_RATE = 0.15; //Constant declared for Vat Rate
-    return subtotal * VAT_RATE;
+    return subtot * VAT_RATE;
     }
     
-    //Constructor
-    public Order(){      
-    customerName = JOptionPane.showInputDialog(null, "Enter your full name:");
-    
-    StudentNumberInput = JOptionPane.showInputDialog(null, "Enter your student number:");
-    studentNum = Integer.parseInt(StudentNumberInput);
-    
-    itemOrdered = JOptionPane.showInputDialog(null, "Enter your order:");
-    
-    quantityInput = JOptionPane.showInputDialog(null, "Enter the number of items ordered:");
-    Quantity = Integer.parseInt(quantityInput);
-    
-    PriceInput = JOptionPane.showInputDialog(null, "Enter the price per item:");
-    pricePerItem = Double.parseDouble(PriceInput);
-    
-    
-    
+    //Total Calculation method that adds together the subtotal and VAT
+    public static double totalCalc(double subtotal, double VAT){
+    return subtotal + VAT;
     }
+    
 }
