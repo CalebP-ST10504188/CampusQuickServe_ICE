@@ -45,6 +45,19 @@ public class Order {
      return pricePerItem; 
     }
     
+    //Discount Calculation method that uses an if statement to determine whether a discount is required or not
+    public static double discountCalc(int quant, double priceItem){
+     double discnt;
+        if (quant > 3) {
+          discnt = priceItem * 0.10; 
+          
+        } else { 
+            discnt = 0;
+        }
+        
+     return discnt;
+    }
+    
     //Subtotal Calculation method that multiplies quantity with price per item
     public static double subtotalCalc(int quant, double priceItem){
     return quant * priceItem;
